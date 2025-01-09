@@ -81,12 +81,12 @@ app.get('/index', async (req, res) => {
 });
 
 
-app.get('/sub1', async (req, res) => {
+app.get('/aboutCompany', async (req, res) => {
     try {
         // const row = await asyncQuery(`SELECT * FROM `, []);
         // res.render('데이터등록', { row: row });
 
-        res.render('sub1');
+        res.render('aboutCompany');
     } catch (error) {
         console.error(error);
         res.status(500).send('error');
