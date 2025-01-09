@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="ko">
+    <%- include('./include/head.ejs') %>
+    
+<body>
+
+<!-- sh_wrapper [s] -->
+<div id="sh_wrapper">
+    
+    <!-- sh_hd [s] -->
+    <%- include('./include/sidebar.ejs') %>
+    <!-- sh_hd [e] -->
+
+    <!-- sh_container [s] -->
+    <main id="sh_container">
+        <!-- sh_container_wrapper [s] -->
+		<div id="sh_container_wrapper">
+
+            <!-- main_banner [s] -->
+            <div id="mainVisual">
+                <div class="main_txt aos-init aos-animate" data-aos="fade-right">
+                    <p class="pl">클라우드로 세상을 연결하다.
+                    안전한 미래를 창조합니다.</p>
+                    <span>고객만족과 신뢰를 실현하기 위해 최선을 다하겠습니다.</span>
+                </div>
+                <div class="swiper main_slide">
+                    <div class="tabs" data-aos="fade-right"></div>
+                    <ul class="swiper-wrapper">
+                        <li class="swiper-slide bg01"></li>
+                        <li class="swiper-slide bg02"></li>
+                        <li class="swiper-slide bg03"></li>
+                    </ul>
+                </div>
+            </div>
+            <script>
+                var tab= ['클라우드 솔루션 ', '안전한 미래', '맞춤형 솔루션'];
+                var mainSwiper = new Swiper("#mainVisual .main_slide", {
+                    effect : 'fade',
+                    loop:true,
+                    speed:1200,
+                    autoplay: {
+                        delay: 3200,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '#mainVisual .tabs',
+                        clickable: true,
+                        bulletActiveClass : 'on',
+                        renderBullet: function (index, className) {
+                            return '<span class="' + className + '">' + (tab[index]) + '</span>';
+                        },
+                    },
+                });
+            </script>
+            <!-- main_banner [e] -->
+
+            <!-- sh_section [s] -->
+            <section id="sh_section">
+                <!-- inc01 [s] -->
+                <article id="inc01">
+                    <div class="top_cont aos-init" data-aos="fade-up" data-aos-duration="400">
+                        <div class="tit_area">
+                            <b>Platform B&T</b>
+                            <p>믿고 안전하게 사용할 수 있는
+                            국내 대표 클라우드기업 </p>
+                            <span>새로운 IT 트렌드에 맞춰 최고 수준의 보안 솔루션을 제공하며, 업계에서 선두에 위치하고 있습니다. </span>
+                        </div>
+                        <div class="view_btn">
+                            <a href=""><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>자세히 보기</a>
+                        </div>
+                    </div>
+                    <div class="img_slide_wrap">
+                        <ul class="img_slide">
+                            <li class="swiper-slide list">
+                                <a href="">
+                                    <div class="top">
+                                        <span>Cloud Computing Services</span>
+                                        <b>클라우드 컴퓨팅 서비스</b>
+                                    </div>
+                                    <div class="bottom">
+                                        <p class="pl">온디맨드로 컴퓨팅 리소스에 액세스할 수 있는 서비스로, 
+                                        서버, 스토리지, 네트워크 등을 인터넷을 통해 제공합니다. 
+                                        필요한 만큼의 리소스를 사용량에 따라 비용을 지불합니다.</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="swiper-slide list">
+                                <a href="">
+                                    <div class="top">
+                                        <span>Software Services</span>
+                                        <b>소프트웨어 서비스</b>
+                                    </div>
+                                    <div class="bottom">
+                                        <p class="pl">사용자는 소프트웨어를 설치하거나 유지보수할 필요 없이 
+                                        서비스를 구독하여 이용할 수 있습니다. 
+                                        소프트웨어를 더 빠르게 구축하고 배포할 수 있습니다.</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="swiper-slide list">
+                                <a href="">
+                                    <div class="top">
+                                        <span>Data Analysis and Artificial Intelligence Services</span>
+                                        <b>데이터 분석 및 인공지능 서비스</b>
+                                    </div>
+                                    <div class="bottom">
+                                        <p class="pl">대규모 데이터를 수집, 저장, 분석하여 인사이트를 
+                                        추출하고 예측 모델을 구축하는 서비스를 제공합니다.
+                                        이를통해 의사결정을 지원하고 생산성을 향상시킬 수 있습니다.</p>
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="swiper-slide list">
+                                <a href="">
+                                    <div class="top">
+                                        <span>Security</span>
+                                        <b>보안 서비스</b>
+                                    </div>
+                                    <div class="bottom">
+                                        <p class="pl">기업은 클라우드 보안 서비스를 통해 중요한 
+                                        비즈니스 정보를 안전하게 보호하고 데이터 손실 및 
+                                        침해 사고를 방지할 수 있습니다.</p>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="bg aos-init" data-aos="fade-up">
+                            <p class="box"></p>
+                        </div>
+                    </div>
+                <script>
+                    gsap.registerPlugin(ScrollTrigger);
+                    ScrollTrigger.matchMedia({
+                        "(min-width: 769px)" : function(){
+                            const pinnedImageWrappers = document.querySelectorAll('#inc01 .img_slide_wrap');
+                            if (pinnedImageWrappers) {
+                                pinnedImageWrappers.forEach((wrapper) => {
+                                    const inner = wrapper.querySelector('#inc01 .img_slide');
+                                    gsap.to(inner, {
+                                        x: () => -(inner.scrollWidth - document.documentElement.clientWidth) + 'px',            
+                                        ease: 'none',
+                                        scrollTrigger: {
+                                            start: 'top',
+                                            trigger: wrapper,
+                                            pin: true,
+                                            scrub: true,
+                                            invalidateOnRefresh: true,
+                                            end: () => `+=${inner.offsetWidth}`            
+                                        }
+                                    });
+                                });
+                            }
+                        }
+                    })
+                </script>
+                </article>
+                <!-- inc01 [e] -->
+                <!-- inc02 [s] -->
+                <section id="inc02">
+                    <div class="tit aos-init" data-aos="fade-up" data-aos-duration="1000">
+                        <b>Innovative Cloud</b>
+                        <p class="pl">비즈니스의 미래를 클라우드로 열어보세요
+                        <span>우리의 혁신적인 클라우드 솔루션</span>으로 
+                        더 나은 성과를 경험해보세요.</p>
+                    </div>
+                    <div class="wrap aos-init" data-aos="fade-left">
+                        <article>
+                            <a href="">
+                                <div class="cont">
+                                    <b>01</b>
+                                    <div class="txt">
+                                        <p><strong>솔루션 및 서비스 소개</strong><span>Introducing solutions and services</span></p>
+                                        <div class="desc pl">당신의 성장을 위한 혁신적인 클라우드 솔루션과 서비스를 제공합니다. 
+                                        안전하고 효율적인 클라우드 환경으로 경쟁력을 높이고 비즈니스를 이끌어 나갑니다. </div>
+                                    </div>
+                                </div>
+                                <img class="img_area" src="./resources/img/main/inc02/img01.jpg" alt="클라우드솔루션">
+                            </a>
+                        </article>
+                        <article>
+                            <a href="">
+                                <div class="cont">
+                                    <b>02</b>
+                                    <div class="txt">
+                                        <p><strong>기술 및 보안</strong><span>Technology and security</span></p>
+                                        <div class="desc pl">신속한 위험 대응 및 암호화 기술을 결합하여 
+                                        데이터 무결성을 유지하고 외부 공격으로부터 안전하게 보호합니다.</div>
+                                    </div>
+                                </div>
+                                <img class="img_area" src="./resources/img/main/inc02/img02.jpg" alt="기술 및 보안">
+                            </a>
+                        </article>
+                        <article>
+                            <a href="">
+                                <div class="cont">
+                                    <b>03</b>
+                                    <div class="txt">
+                                        <p><strong>기업부설연구소</strong><span>Corporate research institute</span></p>
+                                        <div class="desc pl">다양한 보안 옵션과 커스터마이징 기능을 통해 고객이 
+                                        최적의 보안 솔루션을 선택하고 구축할 수 있도록 지원합니다.</div>
+                                    </div>
+                                </div>
+                                <img class="img_area" src="./resources/img/main/inc02/img03.jpg" alt="기업부설연구소">
+                            </a>
+                        </article>
+                    </div>
+                </section>
+                <!-- inc02 [e] -->
+                <!-- inc03 [s] -->
+                <section id="inc03">
+                    <div class="top_cont" data-aos="fade-up" data-aos-duration="1000">
+                        <div class="tit_area">
+                            <b>latest news</b>
+                            <p>함께 더 나은 
+                            클라우드 경험을 만들어갑니다.</p>
+                            <span>최신 업데이트와 유용한 정보로 여러분을 지원합니다.</span>
+                        </div>
+                        <div class="view_btn"><a href=""><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>자세히 보기</a></div>
+                    </div>
+                    <div id="inc03_slide" class="swiper-container" data-aos="fade-up">
+                        <div class="swiper-wrapper">
+                            <article class="swiper-slide item">
+                                <a href="">
+                                    <div class="txt">
+                                        <span>Latest Cloud News</span>
+                                        <p>샘플 홈페이지가 새롭게 리뉴얼 오픈하..</p>
+                                        <div>양질의 서비스와 발전하는 기업이 되기위해 샘플 홈페이지가 새롭게 오픈하였습니다. 항상 보내..</div>
+                                    </div>
+                                </a>
+                            </article>
+                            <article class="swiper-slide item">
+                                <a href="">
+                                    <div class="txt">
+                                        <span>Latest Cloud News</span>
+                                        <p>비싼 GPU 부담에 ‘GPU 전문 클..</p>
+                                        <div>요즘에는 GPU에 특화되고 저렴한 가격으로 GPU를&nbsp;임대해주는 '대체 클라우드'가..</div>
+                                    </div>
+                                </a>
+                            </article>
+                            <article class="swiper-slide item">
+                                <a href="">
+                                    <div class="txt">
+                                        <span>Latest Cloud News</span>
+                                        <p>클라우드 기반 AI보안관제 솔루션 소..</p>
+                                        <div>클라우드 기반 AI 보안관제 솔루션 프롬은 싸이버원의 보안관제 노하우를 집약한 보안관제시스..</div>
+                                    </div>
+                                </a>
+                            </article>
+                            <article class="swiper-slide item">
+                                <a href="">
+                                    <div class="txt">
+                                        <span>Latest Cloud News</span>
+                                        <p>2년 내 클라우드 에너지 관리 시스템..</p>
+                                        <div>하이브리드 클라우드 환경의 에너지 소비와 탄소 발자국 지표를 관리하기 위한 지속가능성 모니..</div>
+                                    </div>
+                                </a>
+                            </article>
+                        </div>
+                        <div class="arr next" tabindex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-f5c2f106d94ad34a9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg></div>
+                        <div class="arr prev" tabindex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-f5c2f106d94ad34a9"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg></div>
+                    </div>
+                    <div class="bnr aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+                        <p>다양한 분야의 경험이 풍부한
+                        샘플 클라우드와 함께 </p>
+                        <a href="" class="btn"><span><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><b>자세히 보기</b></a>
+                    </div>
+                </section>
+                <script>
+                    var inc01Swiper = new Swiper("#inc03_slide", {
+                        loop: true,
+                        speed: 1000,
+                        slidesPerView: 1.2,
+                        spaceBetween: 20,
+                        autoplay: {
+                            delay: 3500,
+                            disableOnInteraction: false,
+                        },
+                        pagination: true,
+                        centeredSlides : true ,
+                        navigation: {
+                            nextEl: '#inc03 .next',
+                            prevEl: '#inc03 .prev',
+                        },
+                        breakpoints: {
+                            1025: {
+                                slidesPerView: 3.5,
+                                spaceBetween: 65,
+                            },
+                            769: {
+                                slidesPerView: 3.2,
+                                spaceBetween: 35,
+                            },
+                            481:{
+                                slidesPerView: 1.5,
+                                spaceBetween: 35,
+                            }
+                        }
+                    });
+                </script>
+                <!-- inc03 [e] -->
+            </section> 
+            <!-- sh_section [e] -->
+        </div>
+        <!-- sh_container_wrapper [e] --> 
+    </main>
+    <!-- sh_container [e] -->
+
+    <div id="sh_ft_btns">
+        <div class="btns">
+            <a class="tel" href="tel:1234-5678"><i class="fa fa-phone"></i>1234-5678</a>
+        </div>
+    </div>
+    <a id="fix_tel" href="tel:1234-5678"><i class="fa fa-phone"></i></a>
+
+    <script>
+        $(window).on("scroll",function(){
+            if($(window).scrollTop() > 100) { 
+                $('#fix_tel').addClass('active');}
+            else{
+                $('#fix_tel').removeClass('active');}
+            return false;
+        });
+    </script>
+
+    <!-- sh_ft [s] -->
+    <%- include('./include/footer.ejs') %>
+
+   
+    <!-- sh_ft [e] -->
+
+</div>
+<!-- sh_wrapper [e] -->
+
+<script>
+	$('#toTop').click(function(){
+		$("html, body").animate({scrollTop:0}, 400);
+		return false;
+	});	
+    $(window).on("scroll",function(){
+        if($(window).scrollTop() > 100) { 
+            $('#fix_tel').addClass('active');}
+        else{
+            $('#fix_tel').removeClass('active');}
+        return false;
+    });
+    
+    feather.replace();
+        AOS.init();
+</script>
+
+</body>
+</html>
+

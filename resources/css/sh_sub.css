@@ -1,0 +1,59 @@
+@charset "utf-8";
+
+/* =========================== SUB */
+#subBnr{position:relative;z-index:20;height:500px;margin:0 auto;color:#fff;background:url(../img/sub/sub_bg.jpg) center no-repeat;background-size:cover}
+#subBnr .txt_area{position:relative;top:50%;opacity:0;padding-top:30px;font-size:40px;line-height:45px;font-weight:700;text-align:center}
+#subBnr .txt_area span{display:block;font-size:18px;font-weight:500;color:rgba(255,255,255,.7)}
+
+/* 반응형 [s] */
+@media (max-width:1024px){
+#subBnr{height:330px}
+#subBnr .txt_area{top:42%;font-size:36px;opacity:1!important;padding-top:0px!important}
+}
+@media (max-width:480px){
+#subBnr{display:flex;justify-content:center;align-items:center;height:55px;border-bottom:1px solid #e1e1e1;background:none}
+#subBnr .txt_area{top:0;font-size:16px;color:#000;line-height:1}
+#subBnr .txt_area span{display:none}
+}
+/* 반응형 [e] */
+
+/* =========================== SNB */
+#sh_aside{border-bottom:1px solid #e1e1e1}
+#sh_snb{display:table;overflow:hidden;margin:0 auto;padding-right:18px}
+#sh_snb li{float:left;margin-left:3px}
+#sh_snb li a{display:block;position:relative;height:60px;padding:0 28px;line-height:60px;color:#222;letter-spacing:-.2px;font-size:16px;-webkit-transition:all .3s;transition:all .3s}
+#sh_snb li a:after{display:block;content:"";position:absolute;bottom:0;left:50%;-webkit-transform:translateX(-50%);-ms-transform:translateX(-50%);transform:translateX(-50%);width:0;height:3px;background-color:var(--primary)}
+#sh_snb li.snb_on a{color:#222;font-weight:600}
+#sh_snb li.snb_on a:after{width:100%}
+
+/* 반응형 [s] */
+@media (max-width:1024px){
+#sh_aside{display:none}
+}
+/* 반응형 [e] */
+
+/* =========================== PAGE */
+#greeting{font-size:15px;font-weight:400;line-height:1.8;letter-spacing:-.2px;color:#777;font-family:'Noto Sans KR'}
+#greeting .tit_area{padding:0 0 40px 5%;font-size:38px;font-weight:100;line-height:1.35;letter-spacing:-.5px;color:#222}
+#greeting .tit_area p{font-weight:600}
+#greeting .img{height:420px;background:url(../img/sub/greeting_img.jpg) center no-repeat;background-size:cover}
+#greeting .cont{padding:40px 0 0 25%}
+#greeting .cont .pl{white-space:pre-line}
+#greeting .cont .sign{margin-top:30px;font-weight:500;color:#222}
+#greeting .cont .sign span{margin-left:20px;font-size:17px}
+
+@media(max-width:1024px){
+#greeting{padding:20px;font-size:14px;line-height:1.6}
+#greeting .tit_area{padding:0;font-size:28px;line-height:1.4;color:#222;word-break:keep-all}
+#greeting .img{height:200px;margin:15px 0}
+#greeting .cont{padding:0}
+#greeting .cont .sign{margin-top:20px}
+#greeting .cont .sign span{margin-left:0;font-size:15px}
+}
+@media(max-width:768px){
+#greeting .cont .pl{white-space:normal}
+}
+@media(max-width:480px){
+#greeting{padding:15px 12px}	
+#greeting .tit_area{font-size:22px}
+}

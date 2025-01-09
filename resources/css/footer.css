@@ -1,0 +1,40 @@
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 0; /* 위아래 여백을 40px로 증가 */
+    text-align: center;
+}
+
+footer .bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+footer .info {
+    text-align: left;
+}
+
+footer .info p {
+    margin: 5px 0;
+}
+
+footer .copy {
+    text-align: right;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+    footer .bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+    footer .info, footer .copy {
+        text-align: center;
+        margin: 10px 0;
+    }
+}

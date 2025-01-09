@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="ko">
+<%- include('./include/head.ejs') %>
+<script src="./resources/js/jquery-ui.js"></script>
+<script src="./resources/js/jquery-1.8.3.min.js"></script>
+<script src="./resources/js/jquery.easing.min.js"></script>
+<script src="./resources/js/topmenu_script.js"></script>
+<script src="./resources/js/aos.js"></script>
+<script src="./resources/js/feather.min.js"></script>
+<link rel="stylesheet" href="./resources/css/aos.css">
+<link rel="stylesheet" href="./resources/css/sh_common.css"> 
+<link rel="stylesheet" href="./resources/css/sh_sub.css">     
+
+<body>
+
+<!-- sh_wrapper [s] -->
+<div id="sh_wrapper">
+
+    <!-- sh_hd [s] -->
+    <%- include('./include/sidebar.ejs') %>
+    <!-- sh_hd [e] -->
+    
+    <!-- sh_container [s] -->
+    <main id="sh_container">
+            
+        <!-- shSubBnr [s] -->
+        <div id="subBnr">
+            <div class="txt_area">
+                회사소개        
+                <span>회사소개</span>
+            </div>
+        </div> 
+        <script>
+            $('#subBnr .txt_area').stop().delay(0).animate({"opacity":"1","padding-top":"0"},400);
+        </script>
+        <!-- shSubBnr [e] -->
+
+        <!-- sh_container_wrapper [s] -->
+        <div id="sh_container_wrapper">
+            <!-- sh_aside [s] -->
+            <div id="sh_aside">
+                <div id="sh_aside_wrapper">
+                    <ul id="sh_snb">
+                        <li class="snb_on">
+                            <a href="">회사소개</a>
+                        </li>
+                            <!-- <li>
+                            <a href="">소분류</a>
+                        </li>
+                            <li>
+                            <a href="">소분류</a>
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+            <!-- sh_aside [e] -->
+            
+            <!-- sh_content [s] -->
+            <div id="sh_content">
+                <!-- 서브페이지 [s] -->
+                <div id="greeting" class="pagecommon">
+                    <div class="tit_area">
+                        빠르게 발전하는 Smart IT 세상<br />
+                        <p><b>IT 상장기업 Platform B&T</b>는 함께 성장하는 미래를 만듭니다.</p>
+                    </div>
+                    <div class="img"></div>
+                    <div class="cont">
+                        <p class="st">먼저 고객 여러분의 변함없는 관심과 성원에 깊이 감사드립니다.</p>
+                        <div class="pl">
+                            저희 <b>Platform B&T 주식회사</b>는 단순한 수익 창출을 넘어서, 고객과 함께 성장하고 공유할 수 있는 신뢰할 수 있는 파트너로 자리매김하고 있습니다. 2024년 4월 1일에 설립된 저희 회사는 기술을 통한 사회적 가치를 창출하며, 사람 중심의 혁신적인 솔루션을 제공하고자 모든 역량을 집중하고 있습니다. 스마트 제조, 인공지능(AI), 디지털 트윈 등 신기술을 활용하여 제조 산업을 혁신하는 데 기여하고 있습니다.
+                        </div><br />
+                        
+                        <div class="pl">
+                            <b>Platform B&T</b>는 다음과 같은 주요 사업 분야에서 활동하고 있습니다:
+                            <ul>
+                                <li>제조 자동화 및 최적화 컨설팅</li>
+                                <li>스마트 및 자율 공장 소프트웨어 개발</li>
+                                <li>인공지능(AI) 기반 소프트웨어 개발</li>
+                                <li>AI 및 디지털 트윈 기반 연구 개발 과제 발굴 및 수행</li>
+                                <li>정보 및 물리 보안(대리점 운영)</li>
+                            </ul>
+                            이러한 다양한 사업 영역에서 고객 맞춤형 솔루션을 제공함으로써 기술 혁신과 함께 비즈니스 가치를 극대화하는 데 주력하고 있습니다.
+                        </div><br />
+                        
+                        <div class="pl">
+                            주요 실적으로는 가공 데이터베이스 및 인공지능 분석 기반 최적화 소프트웨어 개발과 CATIA 및 NC가공 공정 교육 콘텐츠 개발이 있으며, 이를 통해 고객들에게 보다 효율적이고 혁신적인 가치를 제공하고 있습니다. 이처럼 우리는 끊임없는 기술 발전과 함께 제조업 디지털 전환을 선도하고 있습니다.
+                        </div><br />
+                        
+                        <div class="pl">
+                            <b>Platform B&T</b>의 목표는 인공지능, 디지털 트윈, 로봇 등 신기술을 활용하여 품질, 원가, 납기 측면에서의 혁신을 이루고, 제품의 가치를 극대화하는 것입니다. 이를 통해 고객이 미래의 변화를 주도할 수 있도록 돕는 동반자가 되고자 합니다.
+                        </div><br />
+            
+                        <div class="pl">
+                            저희의 미션은 제조 산업의 디지털 전환을 가속화하는 플랫폼 기업으로 자리매김하는 것이며, 성장을 위한 전략으로 <b>Connect & Biz. Development (C&BD)</b>를 채택하고 있습니다. 이는 네트워킹과 파트너십을 통해 새로운 기회를 발굴하고, 제품 및 서비스 혁신을 이룩하여 사업을 확장하는 것을 목표로 합니다.
+                        </div><br />
+            
+                        <div class="pl">
+                            저희는 고객과 함께 도전하고, 끊임없이 발전하며 혁신을 이뤄내는 기업이 되겠습니다. 언제나 변함없는 관심과 성원에 감사드리며, 여러분의 기대에 부응하는 Platform B&T가 되겠습니다. 앞으로도 저희와 함께 성장하는 여정에 함께해 주시기 바랍니다.
+                        </div><br />
+                        
+                        <p class="sign">Platform B&T <span>임직원 일동</span></p>
+                    </div>
+                </div>
+                <!-- 서브페이지 [e] -->
+            </div>
+            
+            <!-- sh_content [e] -->            
+            
+        </div>
+        <!-- sh_container_wrapper [e] -->
+    </main>
+    <!-- sh_container [e] -->
+    <div id="sh_ft_btns">
+        <div class="btns">
+            <a class="tel" href="tel:1234-5678"><i class="fa fa-phone"></i>1234-5678</a>
+        </div>
+    </div>
+    <a id="fix_tel" href="tel:1234-5678"><i class="fa fa-phone"></i></a>
+
+    <script>
+        $(window).on("scroll",function(){
+            if($(window).scrollTop() > 100) { 
+                $('#fix_tel').addClass('active');}
+            else{
+                $('#fix_tel').removeClass('active');}
+            return false;
+        });
+    </script>
+    <!-- sh_ft [s] -->
+    <%- include('./include/footer.ejs') %>
+    <!-- sh_ft [e] -->
+
+<!-- sh_wrapper [e] -->
+</div>
+
+<script>
+	$('#toTop').click(function(){
+		$("html, body").animate({scrollTop:0}, 400);
+		return false;
+	});	
+    $(window).on("scroll",function(){
+        if($(window).scrollTop() > 100) { 
+            $('#fix_tel').addClass('active');}
+        else{
+            $('#fix_tel').removeClass('active');}
+        return false;
+    });
+    
+    feather.replace();
+</script>
+
+</body>
+</html>
+
