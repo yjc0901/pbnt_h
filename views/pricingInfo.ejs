@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ko">
+<%- include('./include/head.ejs') %>
+<script src="./resources/js/jquery-ui.js"></script>
+<script src="./resources/js/jquery-1.8.3.min.js"></script>
+<script src="./resources/js/jquery.easing.min.js"></script>
+<script src="./resources/js/topmenu_script.js"></script>
+<script src="./resources/js/aos.js"></script>
+<script src="./resources/js/feather.min.js"></script>
+<link rel="stylesheet" href="./resources/css/aos.css">
+<link rel="stylesheet" href="./resources/css/sh_common.css"> 
+<link rel="stylesheet" href="./resources/css/sh_sub.css">     
+<link rel="stylesheet" href="./resources/css/style.css">     
+
+<body>
+
+<!-- sh_wrapper [s] -->
+<div id="sh_wrapper">
+
+    <!-- sh_hd [s] -->
+    <%- include('./include/sidebar.ejs') %>
+    <!-- sh_hd [e] -->
+    
+    <!-- sh_container [s] -->
+    <main id="sh_container">
+        <!-- shSubBnr [s] -->
+        <div id="subBnr">
+            <div class="txt_area">
+                가격안내        
+                <!-- <span>회사소개</span> -->
+            </div>
+        </div> 
+        <script>
+            $('#subBnr .txt_area').stop().delay(0).animate({"opacity":"1","padding-top":"0"},400);
+        </script>
+        <!-- shSubBnr [e] -->
+
+        <div id="sh_container_wrapper">
+            <!-- sh_aside [s] -->
+            <div id="sh_aside">
+                <div id="sh_aside_wrapper">
+                    <ul id="sh_snb">
+                        <li class="snb_on">
+                            <a href="pricingInfo">가격안내</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- sh_aside [e] -->
+            
+            <div class="pricing-section">
+                <h2 class="pricing-title">MES, WMS 서비스 요금제</h2>
+                <p class="pricing-subtitle">귀사의 규모와 필요에 맞는 최적의 요금제를 선택하세요</p>
+
+                <div class="pricing-table">
+                    <div class="pricing-header">
+                        <div class="col category">구분</div>
+                        <div class="col">소상공인</div>
+                        <div class="col">소기업</div>
+                        <!-- <div class="col">중소기업</div> -->
+                        <div class="col">중견기업</div>
+                        <div class="col">대기업</div>
+                        <div class="col">공공기관</div>
+                    </div>
+                    
+                    <div class="pricing-row">
+                        <div class="col category">월 이용료</div>
+                        <div class="col">500,000원</div>
+                        <div class="col">500,000원</div>
+                        <!-- <div class="col">1,000,000원</div> -->
+                        <div class="col">2,000,000원</div>
+                        <div class="col">2,000,000원</div>
+                        <div class="col">3,000,000원</div>
+                    </div>
+                    
+                    <div class="pricing-row annual">
+                        <div class="col category">연간 이용료</div>
+                        <div class="col">6,000,000원</div>
+                        <div class="col">6,000,000원</div>
+                        <!-- <div class="col">12,000,000원</div> -->
+                        <div class="col">24,000,000원</div>
+                        <div class="col">24,000,000원</div>
+                        <div class="col">36,000,000원</div>
+                    </div>
+                </div>
+
+                <div class="pricing-notes">
+                    <p>※ 부가세(VAT) 별도</p>
+                    <p>※ 초기 구축비용 별도 협의</p>
+                    <p>※ 맞춤형 개발 필요시 별도 견적</p>
+                    <p>※ 추가 기능 개발 비용 별도 협의</p>
+                    <!-- <p>※ 위 금액은 기준별 사용 요금(VAT별도)이며, 시스템설계에 따라 금액이 변동될 수 있습니다.</p> -->
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- sh_container [e] -->
+    
+    <%- include('./include/footer.ejs') %>
+
+<!-- sh_wrapper [e] -->
+</div>
+
+<script>
+	feather.replace();
+    AOS.init();
+</script>
+
+</body>
+</html>
+
