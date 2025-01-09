@@ -2,35 +2,29 @@ var path = require('path');
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
+require('dotenv').config(); // 환경 변수 로드
+const bcrypt = require('bcryptjs');
+const mysql2 = require('mysql2/promise');
+const session = require('express-session');
+const MySQLStore = require('express-mysql-session')(session);
 
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use('/resources', express.static(path.join(__dirname, '/resources')));
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 
-const mysql2 = require('mysql2/promise');
-/*
 const _pool = mysql2.createPool({
-    host: '182.229.224.143',
-    port: '3306',
-    user: 'root',
-    password: '9999',
-    database: 'jmt',
-    timezone: '+09:00'
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+    port: process.env.DB_PORT,
     dateStrings: 'date',
     connectionLimit: 10,
-});
-*/
-const _pool = mysql2.createPool({
-    host: '115.138.223.131',
-    user: 'root',
-    password: '153426',
-    database: 'mes_v1',
-    port: '3306',
-    dateStrings: 'date',
-    connectionLimit: 10,
-    timezone: '+09:00'
+    timezone: '+09:00',
+    charset: 'utf8mb4',
 });
 
 
@@ -56,11 +50,8 @@ async function asyncQuery(sql, params = []) {
 
 
 
-// app.listen(PORT, "0.0.0.0", () => {
-//     console.log(`server started on PORT ${PORT} // ${new Date()}`);
-//   });
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+app.listen(PORT, "0.0.0.0", () => {
+    console.log(`server started on PORT ${PORT} // ${new Date()}`);
 });
 
 
