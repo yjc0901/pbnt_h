@@ -1,7 +1,7 @@
 var path = require('path');
 const express = require('express');
 const app = express();
-const PORT = 80;
+const PORT = process.env.PORT || 3000;
 
 
 app.use('/resources', express.static(path.join(__dirname, '/resources')));
@@ -56,13 +56,16 @@ async function asyncQuery(sql, params = []) {
 
 
 
-app.listen(PORT, "0.0.0.0", () => {
-    console.log(`server started on PORT ${PORT} // ${new Date()}`);
-  });
+// app.listen(PORT, "0.0.0.0", () => {
+//     console.log(`server started on PORT ${PORT} // ${new Date()}`);
+//   });
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
 
 
 
-  app.get('/', async (req, res) => {
+app.get('/', async (req, res) => {
     try {
         // const row = await asyncQuery(`SELECT * FROM `, []);
         // res.render('데이터등록', { row: row });
