@@ -41,7 +41,7 @@
                 <div id="sh_aside_wrapper">
                     <ul id="sh_snb">
                         <li class="snb_on">
-                            <a href="notice">공지사항</a>
+                            <a href="/notice">공지사항</a>
                         </li>
                     </ul>
                 </div>
@@ -70,22 +70,22 @@
                         <% if (prev) { %>
                             <div class="prev-post">
                                 <span>이전글</span>
-                                <a href="notice/<%= prev.id %>"><%= prev.title %></a>
+                                <a href="/notice/<%= prev.id %>"><%= prev.title %></a>
                             </div>
                         <% } %>
                         <% if (next) { %>
                             <div class="next-post">
                                 <span>다음글</span>
-                                <a href="notice/<%= next.id %>"><%= next.title %></a>
+                                <a href="/notice/<%= next.id %>"><%= next.title %></a>
                             </div>
                         <% } %>
                     </div>
 
                     <!-- 버튼 영역 -->
                     <div class="button-area">
-                        <a href="notice" class="btn-list">목록</a>
+                        <a href="/notice" class="btn-list">목록</a>
                         <% if (isLoggedIn) { %>
-                            <a href="notice/edit/<%= notice.id %>" class="btn-edit">수정</a>
+                            <a href="/notice/edit/<%= notice.id %>" class="btn-edit">수정</a>
                             <button onclick="deleteNotice('<%= notice.id %>')" class="btn-delete">삭제</button>
                         <% } %>
                     </div>
