@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+<%- include('./include/head.ejs') %>
+<script src="./resources/js/jquery-ui.js"></script>
+<script src="./resources/js/jquery-1.8.3.min.js"></script>
+<script src="./resources/js/jquery.easing.min.js"></script>
+<script src="./resources/js/topmenu_script.js"></script>
+<script src="./resources/js/aos.js"></script>
+<script src="./resources/js/feather.min.js"></script>
+<link rel="stylesheet" href="./resources/css/aos.css">
+<link rel="stylesheet" href="./resources/css/sh_common.css"> 
+<link rel="stylesheet" href="./resources/css/sh_sub.css">     
+<link rel="stylesheet" href="./resources/css/style.css">     
+
+<body>
+    <% if (message) { %>
+        <script>
+            alert('<%= message %>');
+        </script>
+    <% } %>
+
+<!-- sh_wrapper [s] -->
+<div id="sh_wrapper">
+
+    <!-- sh_hd [s] -->
+    <%- include('./include/sidebar.ejs') %>
+    <!-- sh_hd [e] -->
+    
+    <!-- sh_container [s] -->
+    <main id="sh_container">
+        <!-- shSubBnr [s] -->
+        <div id="subBnr">
+            <div class="txt_area">
+                로그인        
+            </div>
+        </div> 
+        <script>
+            $('#subBnr .txt_area').stop().delay(0).animate({"opacity":"1","padding-top":"0"},400);
+        </script>
+        <!-- shSubBnr [e] -->
+
+        <div id="sh_container_wrapper">
+            <!-- sh_aside [s] -->
+            <div id="sh_aside">
+                <div id="sh_aside_wrapper">
+                    <ul id="sh_snb">
+                        <li class="snb_on">
+                            <a href="login">Login</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- sh_aside [e] -->
+            
+            <div class="login-container">
+                <!-- <h2 class="login-title">Login</h2> -->
+                <form action="/login" method="POST">
+                    <div class="form-group">
+                        <label for="username">아이디</label>
+                        <input type="text" id="username" name="username" placeholder="아이디를 입력하세요" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">비밀번호</label>
+                        <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요" required>
+                    </div>
+                    
+                    <button type="submit" class="btn-login">로그인</button>
+                </form>
+            </div>
+        </div>
+    </main>
+    <!-- sh_container [e] -->
+    
+    <%- include('./include/footer.ejs') %>
+
+<!-- sh_wrapper [e] -->
+</div>
+
+<script>
+	feather.replace();
+    AOS.init();
+</script>
+
+</body>
+</html>
+

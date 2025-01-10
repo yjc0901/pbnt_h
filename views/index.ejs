@@ -3,6 +3,11 @@
     <%- include('./include/head.ejs') %>
     
 <body>
+    <% if (message) { %>
+        <script>
+            alert('<%= message %>');
+        </script>
+    <% } %>
 
 <!-- sh_wrapper [s] -->
 <div id="sh_wrapper">

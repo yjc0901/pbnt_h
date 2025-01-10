@@ -40,8 +40,17 @@
                             <!-- <li><a href="">오시는 길</a></li> -->
                         </ul>
                     </li>
-                    <li>
-                        <a href="">로그인</a>
+                    <li><% if (isLoggedIn) { %>
+                            <a href="logout">로그아웃</a>
+                            <ul class="sh_lnb_s">
+                                <!-- <li><span class="user-info"><%= user.username %>님</span></li> -->
+                                <!-- 필요한 경우 마이페이지 등 추가 메뉴
+                                <li><a href="/mypage">마이페이지</a></li>
+                                -->
+                            </ul>
+                        <% } else { %>
+                            <a href="login">로그인</a>
+                        <% } %>
                     </li>
                 </ul>
             </nav>
@@ -83,6 +92,9 @@
                                     <li><a href="">문의하기</a></li>
                                     <!-- <li><a href="">오시는 길</a></li> -->
                                 </ul>
+                            </li>
+                            <li>
+                                <a href="login">로그인</a>
                             </li>
                         </ul>
                     </div>
@@ -128,7 +140,7 @@
                             </ul>
                         </li>
                         <li>
-                            <button class="m_bmenu" type="button"><a href="">로그인</a></button>
+                            <button class="m_bmenu" type="button"><a href="login">로그인</a></button>
                         </li>
                     </ul> 
                     <!-- <p class="mo_hd_copy">ⓒ Sample</p>          -->
