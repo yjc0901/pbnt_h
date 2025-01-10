@@ -59,20 +59,30 @@
     });
     
 	/* 반응형 [s] */
-	$("#m_navBtn").click(function(){
-		m++;
-		if(m%2 == 1){
-			$("#m_navBtn").addClass("on");
-			$("#navWrap").fadeIn(300).addClass("on");
-		}else{
-			navClose(); 
-		}; 
-	});	
-	$("#topmenuM .m_bmenu").click(function(){
-		$('.m_smenu').not($(this).next()).slideUp(200);
-		$('.m_bmenu').removeClass('on');
-		$(this).addClass('on')
-		$(this).next().slideDown(200);
-	});	  	
+	$(document).ready(function() {
+        let m = 0; // 변수 초기화
+    
+        $("#m_navBtn").click(function(){
+            m++;
+            if(m % 2 === 1){
+                $("#m_navBtn").addClass("on");
+                $("#navWrap").fadeIn(300).addClass("on");
+            } else {
+                navClose(); 
+            }
+        });
+    
+        $("#topmenuM .m_bmenu").click(function(){
+            $('.m_smenu').not($(this).next()).slideUp(200);
+            $('.m_bmenu').removeClass('on');
+            $(this).addClass('on');
+            $(this).next().slideDown(200);
+        });
+    });
+    
+    function navClose() {
+        $("#m_navBtn").removeClass("on");
+        $("#navWrap").fadeOut(300).removeClass("on");
+    }
 	/* 반응형 [e] */
 });
