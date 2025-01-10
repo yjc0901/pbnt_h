@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ko">
+<%- include('./include/head.ejs') %>
+<script src="/resources/js/jquery-1.8.3.min.js"></script>
+<script src="/resources/js/jquery-ui.js"></script>
+<script src="/resources/js/jquery.easing.min.js"></script>
+<script src="/resources/js/topmenu_script.js"></script>
+<script src="/resources/js/aos.js"></script>
+<script src="/resources/js/feather.min.js"></script>
+<link rel="stylesheet" href="/resources/css/aos.css">
+<link rel="stylesheet" href="/resources/css/sh_common.css"> 
+<link rel="stylesheet" href="/resources/css/sh_sub.css">     
+<link rel="stylesheet" href="/resources/css/style.css">     
+
+<body>
+
+<!-- sh_wrapper [s] -->
+<div id="sh_wrapper">
+
+    <!-- sh_hd [s] -->
+    <%- include('./include/sidebar.ejs') %>
+    <!-- sh_hd [e] -->
+    
+    <!-- sh_container [s] -->
+    <main id="sh_container">
+        <!-- shSubBnr [s] -->
+        <div id="subBnr">
+            <div class="txt_area">
+                공지사항        
+                <span>고객지원</span>
+            </div>
+        </div> 
+        <script>
+            $('#subBnr .txt_area').stop().delay(0).animate({"opacity":"1","padding-top":"0"},400);
+        </script>
+        <!-- shSubBnr [e] -->
+
+        <div id="sh_container_wrapper">
+            <!-- sh_aside [s] -->
+            <div id="sh_aside">
+                <div id="sh_aside_wrapper">
+                    <ul id="sh_snb">
+                        <li class="snb_on">
+                            <a href="notice">공지사항</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- sh_aside [e] -->
+            
+            <!-- 본문 영역 -->
+            <div id="sh_content">
+                <div class="notice-container">
+                    <!-- 검색 영역 -->
+                    <div class="search-area">
+                        <form action="/notice" method="GET" class="search-form">
+                            <select name="searchType">
+                                <option value="title" <%= searchType === 'title' ? 'selected' : '' %>>제목</option>
+                                <option value="content" <%= searchType === 'content' ? 'selected' : '' %>>내용</option>
+                                <option value="author" <%= searchType === 'author' ? 'selected' : '' %>>작성자</option>
+                            </select>
+                            <input type="text" name="keyword" value="<%= keyword %>" placeholder="검색어를 입력하세요">
+                            <button type="submit">검색</button>
+                        </form>
+                    </div>
+
+                    <!-- 게시글 목록 -->
+                    <div class="notice-list">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th width="10%">번호</th>
+                                    <th width="50%">제목</th>
+                                    <th width="15%">작성자</th>
+                                    <th width="15%">작성일</th>
+                                    <th width="10%">조회</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if (notices.length > 0) { %>
+                                    <% notices.forEach(notice => { %>
+                                        <tr>
+                                            <td><%= notice.num %></td>
+                                            <td class="title">
+                                                <a href="notice/<%= notice.id %>"><%= notice.title %></a>
+                                            </td>
+                                            <td><%= notice.author %></td>
+                                            <td><%= notice.created_at %></td>
+                                            <td><%= notice.views %></td>
+                                        </tr>
+                                    <% }); %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="5" class="no-data">등록된 게시글이 없습니다.</td>
+                                    </tr>
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- 글쓰기 버튼 -->
+                    <div class="button-area">
+                        <% if (isLoggedIn) { %>
+                            <a href="notice_write" class="btn-write">글쓰기</a>
+                        <% } %>
+                    </div>
+
+                    <!-- 페이지네이션 -->
+                    <div class="pagination">
+                        <% if (hasPrevGroup) { %>
+                            <a href="notice?page=<%= firstPage - 1 %>" class="page-nav">◀</a>
+                        <% } %>
+                        
+                        <% pageNumbers.forEach(num => { %>
+                            <a href="notice?page=<%= num %>" 
+                                class="page-num <%= num === currentPage ? 'active' : '' %>">
+                                <%= num %>
+                            </a>
+                        <% }); %>
+                        
+                        <% if (hasNextGroup) { %>
+                            <a href="notice?page=<%= lastPage + 1 %>" class="page-nav">▶</a>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- sh_container [e] -->
+    
+    <%- include('./include/footer.ejs') %>
+
+<!-- sh_wrapper [e] -->
+</div>
+
+<script>
+	feather.replace();
+    AOS.init();
+</script>
+
+</body>
+</html>
+

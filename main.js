@@ -253,6 +253,250 @@ app.get('/customerCenter', async (req, res) => {
 });
 
 
+// ===== 공지사항 관련 라우터 =====
+// 공지사항 목록 조회
+app.get('/notice', async (req, res) => {
+    try {
+        const page = parseInt(req.query.page) || 1;
+        const itemsPerPage = 10;
+        const offset = (page - 1) * itemsPerPage;
+
+        // 검색 파라미터
+        const searchType = req.query.searchType;
+        const keyword = req.query.keyword;
+        
+        // 검색 조건 설정
+        let whereClause = 'WHERE is_deleted = false';
+        let params = [];
+        
+        if (keyword) {
+            if (searchType === 'title') {
+                whereClause += ' AND title LIKE ?';
+                params.push(`%${keyword}%`);
+            } else if (searchType === 'content') {
+                whereClause += ' AND content LIKE ?';
+                params.push(`%${keyword}%`);
+            } else if (searchType === 'author') {
+                whereClause += ' AND author LIKE ?';
+                params.push(`%${keyword}%`);
+            }
+        }
+
+        // 전체 게시글 수 먼저 조회
+        const totalCount = await asyncQuery(
+            `SELECT COUNT(*) as count FROM notice ${whereClause}`, 
+            params
+        );
+
+        // 게시글 목록 조회
+        const notices = await asyncQuery(`
+            SELECT 
+                id,
+                @rownum:=@rownum-1 AS num,
+                title,
+                author,
+                DATE_FORMAT(created_at, '%Y-%m-%d') as created_at,
+                views 
+            FROM (
+                SELECT * FROM notice 
+                ${whereClause}
+                ORDER BY id DESC 
+                LIMIT ? OFFSET ?
+            ) sub,
+            (SELECT @rownum:=${totalCount[0].count} + 1) AS r
+        `, [...params, itemsPerPage, offset]);
+
+        // 페이지네이션 정보 계산
+        const totalItems = totalCount[0].count;
+        const totalPages = Math.ceil(totalItems / itemsPerPage);
+        const pageGroup = Math.ceil(page / 5);
+        const lastPage = pageGroup * 5;
+        const firstPage = lastPage - 4;
+
+        const pageNumbers = [];
+        for (let i = firstPage; i <= Math.min(lastPage, totalPages); i++) {
+            pageNumbers.push(i);
+        }
+
+        res.render('notice', {
+            notices,
+            currentPage: page,
+            totalPages,
+            pageNumbers,
+            firstPage,
+            lastPage,
+            hasNextGroup: lastPage < totalPages,
+            hasPrevGroup: firstPage > 1,
+            searchType: searchType || 'title',
+            keyword: keyword || ''      
+        });
+
+    } catch (err) {
+        console.error('공지사항 목록 조회 오류:', err);
+        res.status(500).send('서버 오류가 발생했습니다.');
+    }
+});
+
+// 공지사항 상세 조회
+app.get('/notice/:id', async (req, res) => {
+    try {
+        const noticeId = req.params.id;
+
+        // 게시글 조회 및 조회수 증가를 트랜잭션으로 처리
+        const conn = await _getConn();
+        try {
+            await conn.beginTransaction();
+
+            // 조회수 증가
+            await conn.query(
+                'UPDATE notice SET views = views + 1 WHERE id = ? AND is_deleted = false',
+                [noticeId]
+            );
+
+            // 게시글 조회
+            const [notice] = await conn.query(`
+                SELECT 
+                    id,
+                    title,
+                    content,
+                    author,
+                    DATE_FORMAT(created_at, '%Y-%m-%d %H:%i') as created_at,
+                    views
+                FROM notice 
+                WHERE id = ? AND is_deleted = false
+            `, [noticeId]);
+
+            await conn.commit();
+
+            if (notice.length === 0) {
+                return res.status(404).render('error', { 
+                    message: '존재하지 않는 게시글입니다.' 
+                });
+            }
+
+            // 이전글, 다음글 조회
+            const [neighbors] = await conn.query(`
+                (SELECT id, title FROM notice WHERE id < ? AND is_deleted = false ORDER BY id DESC LIMIT 1)
+                UNION ALL
+                (SELECT id, title FROM notice WHERE id > ? AND is_deleted = false ORDER BY id ASC LIMIT 1)
+            `, [noticeId, noticeId]);
+
+            res.render('notice_detail', { 
+                notice: notice[0],
+                prev: neighbors[0] || null,
+                next: neighbors[1] || null
+            });
+
+        } catch (err) {
+            await conn.rollback();
+            throw err;
+        } finally {
+            conn.release();
+        }
+
+    } catch (err) {
+        console.error('공지사항 상세 조회 오류:', err);
+        res.status(500).send('서버 오류가 발생했습니다.');
+    }
+});
+
+// 공지사항 글쓰기 페이지 렌더링
+app.get('/notice_write', checkLogin, async (req, res) => {
+    try {
+        res.render('notice_write');
+    } catch (err) {
+        console.error('공지사항 작성 페이지 오류:', err);
+        res.status(500).send('서버 오류가 발생했습니다.');
+    }
+});
+
+// 공지사항 등록 처리
+app.post('/notice', checkLogin, async (req, res) => {
+    try {
+        const { title, content, author } = req.body;
+        
+        const result = await asyncQuery(
+            'INSERT INTO notice (title, content, author) VALUES (?, ?, ?)',
+            [title, content, author]
+        );
+
+        // 등록 성공 시 성공 메시지와 함께 리다이렉트
+        res.send(`
+            <script>
+                alert('게시글이 등록되었습니다.');
+                location.href = '/notice';
+            </script>
+        `);
+
+    } catch (err) {
+        console.error('공지사항 등록 오류:', err);
+        res.status(500).send('서버 오류가 발생했습니다.');
+    }
+});
+
+// 공지사항 수정 페이지 렌더링
+app.get('/notice/edit/:id', checkLogin, async (req, res) => {
+    try {
+        const [notice] = await asyncQuery(
+            'SELECT * FROM notice WHERE id = ? AND is_deleted = false',
+            [req.params.id]
+        );
+
+        if (!notice) {
+            return res.status(404).send('게시글을 찾을 수 없습니다.');
+        }
+
+        res.render('notice_edit', { notice });
+    } catch (err) {
+        console.error('공지사항 수정 페이지 오류:', err);
+        res.status(500).send('서버 오류가 발생했습니다.');
+    }
+});
+
+// 공지사항 수정 처리
+app.post('/notice/edit/:id', checkLogin, async (req, res) => {
+    try {
+        const { title, content } = req.body;
+        
+        await asyncQuery(
+            'UPDATE notice SET title = ?, content = ? WHERE id = ?',
+            [title, content, req.params.id]
+        );
+
+        // 수정 성공 시 성공 메시지와 함께 리다이렉트
+        res.send(`
+            <script>
+                alert('게시글이 수정되었습니다.');
+                location.href = '/notice/${req.params.id}';
+            </script>
+        `);
+    } catch (err) {
+        console.error('공지사항 수정 오류:', err);
+        res.status(500).send('서버 오류가 발생했습니다.');
+    }
+});
+
+// 공지사항 삭제 처리
+app.post('/notice/delete/:id', checkLogin, async (req, res) => {
+    try {
+        await asyncQuery(
+            'UPDATE notice SET is_deleted = true WHERE id = ?',
+            [req.params.id]
+        );
+
+        res.send(`
+            <script>
+                alert('게시글이 삭제되었습니다.');
+                location.href = '/notice';
+            </script>
+        `);
+
+    } catch (err) {
+        console.error('공지사항 삭제 오류:', err);
+        res.status(500).send('서버 오류가 발생했습니다.');
+    }
+});
+
 // 고객지원 - 문의하기
 app.get('/inquiry', async (req, res) => {
     try {

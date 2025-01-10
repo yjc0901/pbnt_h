@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+<%- include('./include/head.ejs') %>
+<script src="/resources/js/jquery-1.8.3.min.js"></script>
+<script src="/resources/js/jquery-ui.js"></script>
+<script src="/resources/js/jquery.easing.min.js"></script>
+<script src="/resources/js/topmenu_script.js"></script>
+<script src="/resources/js/aos.js"></script>
+<script src="/resources/js/feather.min.js"></script>
+<link rel="stylesheet" href="/resources/css/aos.css">
+<link rel="stylesheet" href="/resources/css/sh_common.css"> 
+<link rel="stylesheet" href="/resources/css/sh_sub.css">     
+<link rel="stylesheet" href="/resources/css/style.css">     
+
+<body>
+
+<!-- sh_wrapper [s] -->
+<div id="sh_wrapper">
+
+    <!-- sh_hd [s] -->
+    <%- include('./include/sidebar.ejs') %>
+    <!-- sh_hd [e] -->
+    
+    <!-- sh_container [s] -->
+    <main id="sh_container">
+        <!-- shSubBnr [s] -->
+        <div id="subBnr">
+            <div class="txt_area">
+                공지사항        
+                <span>고객지원</span>
+            </div>
+        </div> 
+        <script>
+            $('#subBnr .txt_area').stop().delay(0).animate({"opacity":"1","padding-top":"0"},400);
+        </script>
+        <!-- shSubBnr [e] -->
+
+        <div id="sh_container_wrapper">
+            <!-- sh_aside [s] -->
+            <div id="sh_aside">
+                <div id="sh_aside_wrapper">
+                    <ul id="sh_snb">
+                        <li class="snb_on">
+                            <a href="notice">공지사항</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- sh_aside [e] -->
+            
+            <div id="sh_content">
+                <div class="notice-detail">
+                    <!-- 게시글 헤더 -->
+                    <div class="post-header">
+                        <h2 class="post-title"><%= notice.title %></h2>
+                        <div class="post-info">
+                            <span class="author">작성자: <%= notice.author %></span>
+                            <span class="date">작성일: <%= notice.created_at %></span>
+                            <span class="views">조회수: <%= notice.views %></span>
+                        </div>
+                    </div>
+
+                    <!-- 게시글 내용 -->
+                    <div class="post-content">
+                        <%- notice.content %>
+                    </div>
+
+                    <!-- 이전글/다음글 -->
+                    <div class="post-navigation">
+                        <% if (prev) { %>
+                            <div class="prev-post">
+                                <span>이전글</span>
+                                <a href="notice/<%= prev.id %>"><%= prev.title %></a>
+                            </div>
+                        <% } %>
+                        <% if (next) { %>
+                            <div class="next-post">
+                                <span>다음글</span>
+                                <a href="notice/<%= next.id %>"><%= next.title %></a>
+                            </div>
+                        <% } %>
+                    </div>
+
+                    <!-- 버튼 영역 -->
+                    <div class="button-area">
+                        <a href="notice" class="btn-list">목록</a>
+                        <% if (isLoggedIn) { %>
+                            <a href="notice/edit/<%= notice.id %>" class="btn-edit">수정</a>
+                            <button onclick="deleteNotice('<%= notice.id %>')" class="btn-delete">삭제</button>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- sh_container [e] -->
+    
+    <%- include('./include/footer.ejs') %>
+
+<!-- sh_wrapper [e] -->
+</div>
+
+<script>
+    function deleteNotice(id) {
+        if (confirm('정말 삭제하시겠습니까?')) {
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = `/notice/delete/${id}`;
+            document.body.appendChild(form);
+            form.submit();
+        }
+    }
+
+    feather.replace();
+    AOS.init();
+</script>
+
+</body>
+</html>
+
