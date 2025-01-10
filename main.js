@@ -8,6 +8,7 @@ const bcrypt = require('bcryptjs');
 const mysql2 = require('mysql2/promise');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
+const nodemailer = require('nodemailer');
 
 // === 미들웨어 설정 ===
 app.use(express.json());
@@ -166,6 +167,20 @@ const checkLogin = (req, res, next) => {
     }
     next();
 };
+
+
+// 메일 전송 설정
+const transporter = nodemailer.createTransport({
+    host: 'smtp.naver.com',
+    port: 465,
+    secure: true,
+    auth: {
+        user: process.env.EMAIL_USER, // 발신자 이메일
+        pass: process.env.EMAIL_PASS  // 발신자 이메일 비밀번호
+    },
+    logger: true, // 로그 활성화
+    debug: true   // 디버그 활성화
+});
 
 
 // 메인
@@ -507,3 +522,37 @@ app.get('/inquiry', async (req, res) => {
     }
 });
 
+
+// 폼 제출 처리
+app.post('/inquiry', (req, res) => {
+    const { name, company, email, phone, inquiry_type, message } = req.body;
+
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: process.env.EMAIL_TO,
+        subject: `New Inquiry from ${name}`,
+        text: `
+        <문의 내용>
+            - 성함: ${name}
+            - 회사명: ${company}
+            - E-mail: ${email}
+            - 연락처: ${phone}
+            - 관심 솔루션: ${inquiry_type}
+            - 문의사항: ${message}
+        `
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+        if (error) {
+            console.error('Error sending email:', error);
+            return res.status(500).send('Error sending email');
+        }
+        console.log('Email sent:', info.response);
+        res.send(`
+            <script>
+                alert('메일이 성공적으로 전송되었습니다.');
+                window.location.href = '/customerCenter';
+            </script>
+        `);
+    });
+});
