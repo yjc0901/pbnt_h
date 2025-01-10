@@ -82,6 +82,19 @@ app.get('/index', async (req, res) => {
     }
 });
 
+// 사업안내 - PORTFOLIO
+app.get('/portfolio', async (req, res) => {
+    try {
+        // const row = await asyncQuery(`SELECT * FROM `, []);
+        // res.render('데이터등록', { row: row });
+
+        res.render('portfolio');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('error');
+    }
+});
+
 // 가격안내
 app.get('/pricingInfo', async (req, res) => {
     try {
