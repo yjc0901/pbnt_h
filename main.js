@@ -232,3 +232,34 @@ app.get('/aboutCompany', async (req, res) => {
     }
 });
 
+// 회사소개 - 연혁
+app.get('/companyHistory', async (req, res) => {
+    try {
+        res.render('companyHistory');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('error');
+    }
+});
+
+// 고객지원 - 고객센터
+app.get('/customerCenter', async (req, res) => {
+    try {
+        res.render('customerCenter');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('error');
+    }
+});
+
+
+// 고객지원 - 문의하기
+app.get('/inquiry', async (req, res) => {
+    try {
+        res.render('inquiry');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('error');
+    }
+});
+

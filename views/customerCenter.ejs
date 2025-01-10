@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="ko">
+<%- include('./include/head.ejs') %>
+<script src="./resources/js/jquery-1.8.3.min.js"></script>
+<script src="./resources/js/jquery-ui.js"></script>
+<script src="./resources/js/jquery.easing.min.js"></script>
+<script src="./resources/js/topmenu_script.js"></script>
+<script src="./resources/js/aos.js"></script>
+<script src="./resources/js/feather.min.js"></script>
+<link rel="stylesheet" href="./resources/css/aos.css">
+<link rel="stylesheet" href="./resources/css/sh_common.css"> 
+<link rel="stylesheet" href="./resources/css/sh_sub.css">     
+<link rel="stylesheet" href="./resources/css/style.css">     
+
+<body>
+
+<!-- sh_wrapper [s] -->
+<div id="sh_wrapper">
+
+    <!-- sh_hd [s] -->
+    <%- include('./include/sidebar.ejs') %>
+    <!-- sh_hd [e] -->
+    
+    <!-- sh_container [s] -->
+    <main id="sh_container">
+        <!-- shSubBnr [s] -->
+        <div id="subBnr">
+            <div class="txt_area">
+                고객지원        
+                <span>고객지원</span>
+            </div>
+        </div> 
+        <script>
+            $('#subBnr .txt_area').stop().delay(0).animate({"opacity":"1","padding-top":"0"},400);
+        </script>
+        <!-- shSubBnr [e] -->
+
+        <div id="sh_container_wrapper">
+            <!-- sh_aside [s] -->
+            <div id="sh_aside">
+                <div id="sh_aside_wrapper">
+                    <ul id="sh_snb">
+                        <li class="snb_on">
+                            <a href="customerCenter">고객지원</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- sh_aside [e] -->
+            
+            <div id="sh_content">
+                <div class="faq-section">
+                    <h3 class="faq-title">자주 묻는 질문</h3>
+                    <div class="faq-list">
+                        <div class="faq-item">
+                            <div class="faq-question">
+                                <span class="q-mark">Q</span>
+                                <span class="question-text">서비스 이용 방법이 궁금합니다.</span>
+                            </div>
+                            <div class="faq-answer">
+                                <span class="a-mark">A</span>
+                                <div class="answer-text">
+                                    상세한 답변 내용이 들어갑니다...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-shortcuts">
+                    <div class="shortcut-item">
+                        <svg class="shortcut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                        </svg>
+                        <h3 class="shortcut-title">이메일 문의</h3>
+                        <p class="shortcut-desc">평일 08:00-17:00</p>
+                        <a href="inquiry" class="shortcut-link">문의하기</a>
+                    </div>
+                    <div class="shortcut-item">
+                        <svg class="shortcut-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                        </svg>
+                        <h3 class="shortcut-title">전화 문의</h3>
+                        <p class="shortcut-desc">평일 08:00-17:00</p>
+                        <p class="phone-number">070-8211-3394</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- sh_container [e] -->
+    
+    <%- include('./include/footer.ejs') %>
+
+<!-- sh_wrapper [e] -->
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.faq-question').click(function() {
+            // 현재 클릭된 질문에 대한 답변
+            const $answer = $(this).next('.faq-answer');
+            
+            // 현재 클릭된 질문의 화살표 상태
+            $(this).toggleClass('active');
+            
+            // 다른 모든 답변들을 닫고 active 클래스 제거
+            $('.faq-answer').not($answer).removeClass('active');
+            $('.faq-question').not($(this)).removeClass('active');
+            
+            // 현재 답변 토글
+            $answer.toggleClass('active');
+        });
+    });
+
+    feather.replace();
+    AOS.init();
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="ko">
+<%- include('./include/head.ejs') %>
+<script src="./resources/js/jquery-1.8.3.min.js"></script>
+<script src="./resources/js/jquery-ui.js"></script>
+<script src="./resources/js/jquery.easing.min.js"></script>
+<script src="./resources/js/topmenu_script.js"></script>
+<script src="./resources/js/aos.js"></script>
+<script src="./resources/js/feather.min.js"></script>
+<link rel="stylesheet" href="./resources/css/aos.css">
+<link rel="stylesheet" href="./resources/css/sh_common.css"> 
+<link rel="stylesheet" href="./resources/css/sh_sub.css">     
+<link rel="stylesheet" href="./resources/css/style.css">     
+
+<body>
+
+<!-- sh_wrapper [s] -->
+<div id="sh_wrapper">
+
+    <!-- sh_hd [s] -->
+    <%- include('./include/sidebar.ejs') %>
+    <!-- sh_hd [e] -->
+    
+    <!-- sh_container [s] -->
+    <main id="sh_container">
+        <!-- shSubBnr [s] -->
+        <div id="subBnr">
+            <div class="txt_area">
+                문의하기        
+                <span>고객지원</span>
+            </div>
+        </div> 
+        <script>
+            $('#subBnr .txt_area').stop().delay(0).animate({"opacity":"1","padding-top":"0"},400);
+        </script>
+        <!-- shSubBnr [e] -->
+
+        <div id="sh_container_wrapper">
+            <!-- sh_aside [s] -->
+            <div id="sh_aside">
+                <div id="sh_aside_wrapper">
+                    <ul id="sh_snb">
+                        <li class="snb_on">
+                            <a href="inquiry">문의하기</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- sh_aside [e] -->
+            
+            <div id="sh_content"></div>
+                <div class="inquiry-form">
+                    <!-- <h2 class="contact-title">CONTACT US</h2> -->
+                    <p class="contact-desc">궁금한 사항이 있으시면 문의해주세요.</p>
+                    
+                    <form action="/inquiry" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" name="name" placeholder="성함 *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="company" placeholder="회사명 *" required>
+                            </div>
+                        </div>
+        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="email" name="email" placeholder="E-mail *" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="tel" name="phone" placeholder="연락처 *" required>
+                            </div>
+                        </div>
+        
+                        <div class="form-group full-width">
+                            <select name="inquiry_type" required>
+                                <option value="">관심 솔루션 *</option>
+                                <option value="solution1">솔루션 1</option>
+                                <option value="solution2">솔루션 2</option>
+                                <option value="solution3">솔루션 3</option>
+                            </select>
+                        </div>
+        
+                        <div class="form-group full-width">
+                            <textarea name="message" placeholder="문의사항을 입력해주세요." rows="6" required></textarea>
+                        </div>
+        
+                        <div class="form-agree">
+                            <label>
+                                <input type="checkbox" name="privacy_agree" class="agree-checkbox" required>
+                                (필수) Platform B&T <a href="#" id="privacyPopupBtn">개인정보처리방침</a>에 동의합니다.
+                            </label>
+                            <!-- <label>
+                                <input type="checkbox" name="marketing_agree" class="agree-checkbox">
+                                (선택) 이벤트나 광고마케팅 수신에 동의합니다.
+                            </label> -->
+                        </div>
+        
+                        <div class="form-submit">
+                            <button type="submit">메일 전송하기</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- sh_container [e] -->
+
+<!-- 개인정보처리방침 팝업 -->
+<div id="privacyPopup" class="privacy-popup">
+    <div class="popup-content">
+        <div class="popup-header">
+            <h3>개인정보처리방침</h3>
+            <button class="close-popup">&times;</button>
+        </div>
+        <div class="popup-body">
+            <h2>플랫폼비앤티 주식회사 개인정보처리방침</h2>
+            
+            <section>
+                <h3>1. 개인정보 처리방침이란</h3>
+                <p>플랫폼비앤티 주식회사(이하"회사")는 이용자의 '동의를 기반으로 개인정보를 수집·이용 및 제공'하고 있으며, '이용자의 권리 (개인정보 자기결정권)를 적극적으로 보장'합니다. 회사는 정보통신서비스제공자가 준수하여야 하는 대한민국의 관계 법령 및 개인정보보호 규정, 가이드라인을 준수하고 있습니다. "개인정보처리방침"이란 이용자의 소중한 개인정보를 보호함으로써 이용자가 안심하고 서비스를 이용할 수 있도록 회사가 준수해야 할 지침을 의미합니다. 본 개인정보 처리방침은 '프로젝트 문의'를 포함하여 개인 또는 사업자를 위해 회사가 제공하는 서비스에 적용됩니다.</p>
+            </section>
+
+            <section>
+                <h3>2. 개인정보 수집</h3>
+                <p>회사는 일부 서비스(문의)를 위한 최소한의 개인정보 및 서비스이용 내역 등의 개인정보를 다음과 같이 수집하고 있습니다.</p>
+                <!-- <p>회사는 일부 서비스(문의/리셀러모집)를 위한 최소한의 개인정보 및 서비스이용 내역 등의 개인정보를 다음과 같이 수집하고 있습니다.</p> -->
+                <p>서비스 이용 과정에서 이용자로부터 수집하는 개인정보</p>
+                <ul>
+                    <li>[문의/필수] 이름, 회사명, 이메일, 연락처</li>
+                    <!-- <li>[문의/선택] 회사 홈페이지 주소</li> -->
+                    <!-- <li>[리셀러모집/필수] 이름, 회사명, 직급/직책, 연락처, 이메일</li> -->
+                    <!-- <li>[리셀러모집/선택] 회사 홈페이지 주소</li> -->
+                    <!-- <li>[마케팅 활용 동의 시/선택] 이름, 회사명, 직급/직책, 연락처, 이메일</li> -->
+                </ul>
+            </section>
+
+            <section>
+                <h3>3. 개인정보의 이용</h3>
+                <p>회사는 서비스 제공·개선, 신규 서비스 개발 등을 위해 아래와 같이 최소한의 개인정보를 수집하고 있습니다.</p>
+                <ul>
+                    <li>문의 접수 시, 원활한 고객응대를 목적으로 함</li>
+                    <li>신규 서비스 개발, 다양한 서비스 제공, 문의사항 또는 불만처리, 공지사항 전달</li>
+                    <!-- <li>이벤트 정보 및 참여기회 제공, 광고성 정보 제공 등 마케팅 및 프로모션 목적(선택 항목에 동의한 경우)</li> -->
+                </ul>
+            </section>
+
+            <section>
+                <h3>4. 개인정보 제공/위탁</h3>
+                <p>회사는 이용자들의 개인정보를 "3. 개인정보 이용"에 고지한 범위 내에서 사용하며, 이용자의 사전 동의 없이는 해당 범위를 초과하여 이용하거나 원칙적으로 이용자의 개인정보를 외부에 공개하지 않습니다.</p>
+            </section>
+
+            <section>
+                <h3>5. 개인정보 파기</h3>
+                <p>전자적 파일 형태인 경우 복구 및 재생되지 않도록 안전하게 삭제하고, 그 밖에 기록물, 인쇄물, 서면 등을 제공받은 경우 분쇄하거나 소각하여 파기합니다. 또한, 회사는 '개인정보 유효기간제'에 따라 추가 이용 현황이 없는 회원의 개인정보를 삭제하고 있습니다.</p>
+                <p>아래 정보는 수집, 이용 및 제공목적이 달성된 경우, [개인정보 보호법] 제21조에 따라 처리합니다.</p>
+                <table>
+                    <tr>
+                        <th>보관정보</th>
+                        <th>보존이유</th>
+                        <th>보존기간</th>
+                    </tr>
+                    <tr>
+                        <td>이름, 회사명, 이메일, 연락처</td>
+                        <td>고객문의응대</td>
+                        <td>1년</td>
+                    </tr>
+                </table>
+            </section>
+
+            <section>
+                <h3>6. 개인정보보호 책임자</h3>
+                <!-- <h3>6. 개인정보보호 책임자 및 담당부서</h3> -->
+                <table>
+                    <tr>
+                        <th>책임자</th>
+                        <!-- <th>소속</th> -->
+                        <th>전화</th>
+                        <th>이메일</th>
+                    </tr>
+                    <tr>
+                        <td>김종진</td>
+                        <!-- <td>운영개발팀</td> -->
+                        <td>055-920-1610</td>
+                        <td>jjkim@pbnt.kr</td>
+                    </tr>
+                </table>
+                <p>서비스를 이용하면서 발생하는 모든 개인정보보호 관련 문의, 불만, 조언이나 기타 사항은 개인정보 보호책임자 및 담당부서로 연락해 주시기 바랍니다.</p>
+            </section>
+
+            <section>
+                <h3>7. 고지의 의무</h3>
+                <p>개인정보 처리방침 내용 추가, 삭제 및 수정이 있을 시에는 개정 최소 7일전부터 홈페이지의 '공지사항'을 통해 고지할 것입니다. 다만, 개인정보의 수집 및 활용, 제3자 제공 등과 같이 이용자 권리의 중요한 변경이 있을 경우에는 최소 30일 전에 고지합니다.</p>
+            </section>
+
+            <div class="privacy-footer">
+                <p>공고일자: 2025년 01월 08일</p>
+                <p>시행일자: 2025년 01월 08일</p>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    <%- include('./include/footer.ejs') %>
+
+<!-- sh_wrapper [e] -->
+</div>
+
+<script>
+    feather.replace();
+    AOS.init();
+
+    // 팝업 제어 스크립트
+    document.getElementById('privacyPopupBtn').addEventListener('click', function(e) {
+        e.preventDefault();
+        document.getElementById('privacyPopup').style.display = 'block';
+    });
+
+    document.querySelector('.close-popup').addEventListener('click', function() {
+        document.getElementById('privacyPopup').style.display = 'none';
+    });
+
+    // 팝업 외부 클릭시 닫기
+    window.addEventListener('click', function(e) {
+        if (e.target == document.getElementById('privacyPopup')) {
+            document.getElementById('privacyPopup').style.display = 'none';
+        }
+    });
+</script>
+
+</body>
+</html>
+
