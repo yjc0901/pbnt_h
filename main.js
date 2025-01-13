@@ -2,7 +2,7 @@
 const express = require('express');
 var path = require('path');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
 require('dotenv').config(); // 환경 변수 로드
 const bcrypt = require('bcryptjs');
 const mysql2 = require('mysql2/promise');
