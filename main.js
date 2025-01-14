@@ -532,7 +532,8 @@ app.post('/inquiry', (req, res) => {
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: process.env.EMAIL_TO,
-        subject: `New Inquiry from ${name}`,
+        // subject: `New Inquiry from ${name}`,
+        subject: `${name}님으로부터 새로운 문의가 도착했습니다.`,
         text: `
         <문의 내용>
             - 성함: ${name}
