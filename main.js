@@ -57,9 +57,9 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: false, // HTTPS 사용 시 true로 설정
-        httpOnly: true, // 클라이언트에서 쿠키 접근 차단
-        sameSite: 'strict', // CSRF 방지
+        secure: false,
+        httpOnly: true,
+        sameSite: 'strict',
         maxAge: 1000 * 60 * 60 // 1시간
     }
 }));
