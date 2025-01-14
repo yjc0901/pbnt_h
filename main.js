@@ -50,6 +50,8 @@ const sessionStore = new MySQLStore({
 });
 
 // 세션 설정
+app.set('trust proxy', 1); // 프록시를 신뢰하도록 설정
+
 app.use(session({
     key: 'pbnt_session',
     secret: process.env.SESSION_SECRET, // .env 파일에 저장된 키
@@ -57,7 +59,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        secure: false,
+        secure: true,
         httpOnly: true,
         sameSite: 'strict',
         maxAge: 1000 * 60 * 60 // 1시간
